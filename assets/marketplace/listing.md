@@ -3,10 +3,17 @@
 Google Workspace Marketplace SDK の「Store Listing」に入力する内容。
 
 - App name: `Slide Table Styler`
-- Category: Productivity（表示される候補に合わせて選ぶ。なければ Office applications）
+- Category: Office Applications（候補に Productivity がなかったため）
 - Pricing: Free
 - Languages: English (default), Japanese
 - Support URL: https://github.com/sok41/slide-table-styler/issues
+- Help URL: https://slide-table-styler.zkuma.com/
+- Report Issue URL: https://github.com/sok41/slide-table-styler/issues/new
+- Post Install Tip（言語共通・英語）:
+
+  ```
+  Open any Google Slides presentation, then choose Extensions > Slide Table Styler > Open sidebar. Click inside a table, pick a design and click Apply.
+  ```
 - Website: https://slide-table-styler.zkuma.com/
 - Privacy policy: https://slide-table-styler.zkuma.com/privacy.html
 - Terms of service: https://slide-table-styler.zkuma.com/terms.html
@@ -17,9 +24,11 @@ Google Workspace Marketplace SDK の「Store Listing」に入力する内容。
 |---|---|
 | Application icon 128×128 | `assets/icon/icon-128.png` |
 | Application icon 32×32 | `assets/icon/icon-32.png` |
+| Application icon 48×48（任意） | `assets/icon/icon-48.png` |
+| Application icon 96×96（任意） | `assets/icon/icon-96.png` |
 | Card banner 220×140 | `assets/marketplace/card-banner-220x140.png` |
-| Screenshots 1280×800 (English) | `assets/marketplace/screenshot-1-en.png` 〜 `screenshot-4-en.png` |
-| Screenshots 1280×800 (Japanese) | `assets/marketplace/screenshot-1-ja.png` 〜 `screenshot-4-ja.png` |
+| Screenshots 1280×800（全言語で共通の欄。こちらを使う） | `assets/marketplace/screenshot-1-en.png` 〜 `screenshot-4-en.png` |
+| Screenshots 1280×800（日本語版。Store Listing では使っていない） | `assets/marketplace/screenshot-1-ja.png` 〜 `screenshot-4-ja.png` |
 
 ---
 
