@@ -28,7 +28,7 @@
   <!-- ===== English ===== -->
   <div lang="en">
     <h1>Privacy Policy</h1>
-    <p class="meta">Effective date: September 30, 2026</p>
+    <p class="meta">Effective date: September 30, 2026 (last updated: October 7, 2026)</p>
     <p>This Privacy Policy explains how Slide Table Styler (the "Add-on"), a Google Slides add-on developed by sok41 (the "Developer"), accesses, uses, and handles your data.</p>
 
     <h2>Summary</h2>
@@ -66,18 +66,37 @@
       </table>
     </div>
 
-    <h2>Storage and sharing</h2>
+    <h2>Data sharing and transfer</h2>
     <ul>
-      <li>The Add-on does not save your content or settings. All processing happens on Google's servers while the Add-on runs, and nothing is kept afterward.</li>
-      <li>The Add-on does not transfer your data to the Developer or to any third party, does not sell it, and does not use it for advertising or to train AI or machine learning models.</li>
-      <li>If an error occurs, a technical error message may be recorded in Google Cloud Logging so the Developer can fix problems. These messages describe the error (and may include internal identifiers of slide objects) but not the text of your tables. Google also records basic execution information, such as the time and whether it succeeded. These records are deleted automatically according to Google Cloud's retention settings.</li>
+      <li>The Add-on does not transfer your data to the Developer, to any third party, or to any server outside Google. It has no servers of its own and makes no requests to external services.</li>
+      <li>The Add-on does not sell your data, and does not use or share it for advertising, credit or lending decisions, or any purpose other than providing the features described above.</li>
     </ul>
+
+    <h2>Data protection</h2>
+    <p>Your data is protected by the following mechanisms:</p>
+    <ul>
+      <li><strong>Processing only inside Google's infrastructure.</strong> The Add-on runs on Google Apps Script and changes your tables through the Google Slides API. Your presentation data is processed only within Google's systems and is never copied to servers operated by the Developer or by anyone else.</li>
+      <li><strong>Encryption in transit.</strong> All communication between the sidebar in your browser, Google Apps Script and the Google Slides API uses HTTPS (TLS) encryption.</li>
+      <li><strong>Your own authorization only.</strong> The Add-on runs under your Google account with the permissions you grant. It can only act on the presentation you have open, and only when you click Apply. You can revoke access at any time (see "Removing access" below).</li>
+      <li><strong>No stored copies.</strong> The Add-on does not write your content to any database, file, cache or browser storage, so there is no stored copy of your data that could be exposed.</li>
+      <li><strong>Restricted access to error logs.</strong> Error logs (described below) are kept in the Developer's Google Cloud project, protected by Google Cloud's access controls, and can be viewed only by the Developer's Google account.</li>
+    </ul>
+
+    <h2>Data retention and deletion</h2>
+    <ul>
+      <li><strong>Your content:</strong> not retained. The tables are read only while the Add-on is running, and nothing is kept after the request finishes.</li>
+      <li><strong>Error logs:</strong> if an error occurs, a technical error message may be recorded in Google Cloud Logging so the Developer can fix problems. These messages describe the error (and may include internal identifiers of slide objects) but not the text of your tables. Google also records basic execution information, such as the time and whether it succeeded. These records are deleted automatically after 30 days (the default retention period of Google Cloud Logging).</li>
+      <li><strong>Deletion requests:</strong> because the Add-on stores no personal data, there is normally nothing to delete. If you have questions about your data, contact us through the link below.</li>
+    </ul>
+
+    <h2>AI and machine learning</h2>
+    <p>The Add-on does not use any AI or machine learning models. Your data is not used to develop, improve or train AI or machine learning models, and it is not transferred to any third-party AI service.</p>
 
     <h2>Limited Use</h2>
     <p>Slide Table Styler's use and transfer of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
 
     <h2>Removing access</h2>
-    <p>You can uninstall the Add-on from Google Slides at any time (<strong>Extensions → Add-ons → Manage add-ons</strong>). You can also remove its access from your Google Account at <a href="https://myaccount.google.com/connections">Third-party apps &amp; services</a>. Because the Add-on keeps no data, there is nothing else to delete.</p>
+    <p>You can uninstall the Add-on from Google Slides at any time (<strong>Extensions → Add-ons → Manage add-ons</strong>). You can also remove its access from your Google Account at <a href="https://myaccount.google.com/connections">Third-party apps &amp; services</a>. Because the Add-on keeps no data, there is nothing else to delete (see "Data retention and deletion").</p>
 
     <h2>This website</h2>
     <p>This website is hosted on GitHub Pages. GitHub may collect technical information such as IP addresses when you visit; see the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>. This website itself does not use cookies or analytics.</p>
@@ -92,7 +111,7 @@
   <!-- ===== 日本語 ===== -->
   <div lang="ja">
     <h1>プライバシーポリシー</h1>
-    <p class="meta">施行日：2026年9月30日</p>
+    <p class="meta">施行日：2026年9月30日（最終更新：2026年10月7日）</p>
     <p>このプライバシーポリシーは、sok41（以下「開発者」）が提供する Googleスライドのアドオン Slide Table Styler（以下「本アドオン」）が、データにどのようにアクセスし、どのように扱うかを説明するものです。</p>
 
     <h2>概要</h2>
@@ -130,18 +149,37 @@
       </table>
     </div>
 
-    <h2>保存と共有</h2>
+    <h2>データの共有と転送</h2>
     <ul>
-      <li>本アドオンは、内容や設定を保存しません。処理は本アドオンの実行中に Google のサーバー上で行われ、終了後に何も残しません。</li>
-      <li>本アドオンは、データを開発者や第三者に送信せず、販売せず、広告や AI・機械学習モデルの学習に使いません。</li>
-      <li>エラーが起きた場合、開発者が不具合を直すために、技術的なエラーメッセージが Google Cloud Logging に記録されることがあります。これはエラーの内容を示すもので（スライド内のオブジェクトの内部 ID を含むことがあります）、表の文字は含みません。また Google は、実行日時や成功・失敗などの基本的な実行情報を記録します。これらの記録は Google Cloud の保持期間の設定に従って自動で削除されます。</li>
+      <li>本アドオンは、データを開発者、第三者、Google 以外のサーバーに送信しません。独自のサーバーを持たず、外部のサービスにも接続しません。</li>
+      <li>本アドオンは、データを販売せず、広告・与信や貸付の判断など、上に書いた機能の提供以外の目的に使ったり共有したりしません。</li>
     </ul>
+
+    <h2>データの保護</h2>
+    <p>利用者のデータは、次の仕組みで保護されています。</p>
+    <ul>
+      <li><strong>処理は Google の基盤の中だけ</strong>：本アドオンは Google Apps Script 上で動作し、Google Slides API を通じて表を変更します。プレゼンテーションのデータは Google のシステムの中だけで処理され、開発者やほかの誰かが運用するサーバーにコピーされることはありません。</li>
+      <li><strong>通信の暗号化</strong>：ブラウザのサイドバー、Google Apps Script、Google Slides API の間の通信は、すべて HTTPS（TLS）で暗号化されています。</li>
+      <li><strong>利用者自身の承認の範囲だけで動作</strong>：本アドオンは、利用者の Google アカウントのもとで、利用者が許可した権限だけで動作します。対象は開いているプレゼンテーションだけで、「適用」を押したときにだけ動きます。アクセス権はいつでも取り消せます（下の「アクセス権の削除」を参照）。</li>
+      <li><strong>データの複製を持たない</strong>：本アドオンは、内容をデータベース・ファイル・キャッシュ・ブラウザのストレージに書き込みません。そのため、流出しうるデータの複製が存在しません。</li>
+      <li><strong>エラーログへのアクセスの制限</strong>：エラーログ（下記）は開発者の Google Cloud プロジェクトに保存され、Google Cloud のアクセス制御で保護されており、開発者の Google アカウントだけが閲覧できます。</li>
+    </ul>
+
+    <h2>データの保存と削除</h2>
+    <ul>
+      <li><strong>利用者の内容</strong>：保存しません。表は本アドオンの実行中にだけ読み取り、処理が終わったあとには何も残しません。</li>
+      <li><strong>エラーログ</strong>：エラーが起きた場合、開発者が不具合を直すために、技術的なエラーメッセージが Google Cloud Logging に記録されることがあります。これはエラーの内容を示すもので（スライド内のオブジェクトの内部 ID を含むことがあります）、表の文字は含みません。また Google は、実行日時や成功・失敗などの基本的な実行情報を記録します。これらの記録は30日後に自動で削除されます（Google Cloud Logging の既定の保持期間）。</li>
+      <li><strong>削除の依頼</strong>：本アドオンは個人データを保存しないため、通常は削除するものはありません。データについてご質問があれば、下の問い合わせ先までご連絡ください。</li>
+    </ul>
+
+    <h2>AI・機械学習</h2>
+    <p>本アドオンは、AI や機械学習のモデルを使いません。利用者のデータを AI・機械学習モデルの開発・改善・学習に使うことはなく、第三者の AI サービスに送信することもありません。</p>
 
     <h2>Limited Use（利用の制限）</h2>
     <p>Slide Table Styler による Google API から受け取った情報の利用と転送は、Limited Use の要件を含む <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API サービスのユーザーデータに関するポリシー</a>に従います。</p>
 
     <h2>アクセス権の削除</h2>
-    <p>本アドオンは、Googleスライドの <strong>拡張機能 → アドオン → アドオンを管理</strong> からいつでもアンインストールできます。また、Google アカウントの<a href="https://myaccount.google.com/connections">サードパーティのアプリとサービス</a>からアクセス権を削除できます。本アドオンはデータを保存しないため、ほかに削除が必要なものはありません。</p>
+    <p>本アドオンは、Googleスライドの <strong>拡張機能 → アドオン → アドオンを管理</strong> からいつでもアンインストールできます。また、Google アカウントの<a href="https://myaccount.google.com/connections">サードパーティのアプリとサービス</a>からアクセス権を削除できます。本アドオンはデータを保存しないため、ほかに削除が必要なものはありません（「データの保存と削除」を参照）。</p>
 
     <h2>このウェブサイトについて</h2>
     <p>このウェブサイトは GitHub Pages で公開しています。閲覧時に GitHub が IP アドレスなどの技術的な情報を収集することがあります。詳しくは <a href="https://docs.github.com/ja/site-policy/privacy-policies/github-general-privacy-statement">GitHub のプライバシーに関する声明</a>をご覧ください。このウェブサイト自体は、Cookie やアクセス解析を使いません。</p>
