@@ -240,6 +240,9 @@
       sumBoldColumns: c => `太字列 ${c}`, noChange: '変更しない', separator: '・',
       applyTo: '適用先', scopeSelection: '選択中の表', scopeSlide: 'このスライドのすべての表', scopeAll: 'すべてのスライドの表',
       apply: '適用', applying: '適用中…',
+      needAccess: '開いたダイアログで、このプレゼンテーションへのアクセスを許可してください。許可すると自動で適用します。',
+      waitingAccess: '許可を待っています…',
+      accessCancelled: 'アクセスが許可されなかったため、適用しませんでした。もう一度「適用」を押すと、許可の画面が開きます。',
       hintSelection: '表の中をクリックしてから「適用」を押してください。',
       hintSlide: '開いているスライドの表すべてに適用します。',
       hintAll: 'プレゼンテーション内の表すべてに適用します。',
@@ -262,6 +265,9 @@
       sumBoldColumns: c => `Bold cols ${c}`, noChange: 'No change', separator: ' · ',
       applyTo: 'Apply to', scopeSelection: 'Selected table', scopeSlide: 'All tables on this slide', scopeAll: 'All tables in presentation',
       apply: 'Apply', applying: 'Applying…',
+      needAccess: 'In the dialog, allow access to this presentation. The design is applied automatically once you allow it.',
+      waitingAccess: 'Waiting for access…',
+      accessCancelled: "Access wasn't allowed, so nothing was applied. Click 'Apply' again to open the access screen.",
       hintSelection: 'Click inside a table, then click "Apply".',
       hintSlide: 'Applies to every table on the current slide.',
       hintAll: 'Applies to every table in the presentation.',
@@ -540,18 +546,62 @@
     applyBtn.disabled = true;
     applyBtn.textContent = I18N.applying;
     showStatus('');
+    runApply(selected, opts, true);
+  });
 
+  // allowPicker: アクセスの許可が必要なとき、許可の画面を開くか（許可のあとの再実行では開かない）
+  function runApply(presetKey, opts, allowPicker) {
     google.script.run
       .withSuccessHandler(msg => {
         showStatus(msg, 'done');
         reset();
       })
       .withFailureHandler(err => {
+        if (allowPicker && /NEED_FILE_ACCESS/.test(err.message)) {
+          requestAccess(presetKey, opts);
+          return;
+        }
         showStatus(err.message, 'error');
         reset();
       })
-      .applyPreset(selected, opts);
-  });
+      .applyPreset(presetKey, opts);
+  }
+
+  // drive.file ではファイルごとに一度、Google Picker で許可してもらう必要がある
+  function requestAccess(presetKey, opts) {
+    applyBtn.textContent = I18N.waitingAccess;
+    showStatus(I18N.needAccess);
+    google.script.run
+      .withSuccessHandler(() => waitForAccess(presetKey, opts, Date.now(), 0))
+      .withFailureHandler(err => {
+        showStatus(err.message, 'error');
+        reset();
+      })
+      .showFilePicker(LANG);
+  }
+
+  // ダイアログが閉じるまで（最長10分）、許可されたかを確認し続ける。
+  // 閉じた直後は許可の反映が遅れることがあるので、閉じてからも数回は確認する
+  function waitForAccess(presetKey, opts, startedAt, checksAfterClose) {
+    google.script.run
+      .withSuccessHandler(state => {
+        if (state.access) {
+          applyBtn.textContent = I18N.applying;
+          showStatus('');
+          runApply(presetKey, opts, false);
+        } else if ((state.closed && checksAfterClose >= 3) || Date.now() - startedAt > 10 * 60 * 1000) {
+          showStatus(I18N.accessCancelled, 'error');
+          reset();
+        } else {
+          setTimeout(() => waitForAccess(presetKey, opts, startedAt, checksAfterClose + (state.closed ? 1 : 0)), 1500);
+        }
+      })
+      .withFailureHandler(err => {
+        showStatus(err.message, 'error');
+        reset();
+      })
+      .checkFileAccess();
+  }
 
   function reset() {
     applyBtn.disabled = false;

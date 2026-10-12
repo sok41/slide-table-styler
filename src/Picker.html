@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body { margin: 0; padding: 12px 16px; font-family: Arial, sans-serif; font-size: 13px; color: #202124; }
+    #status { margin-top: 8px; color: #5f6368; }
+    #status.error { color: #c5221f; }
+  </style>
+</head>
+<body>
+  <p id="intro"></p>
+  <p id="status"></p>
+<script>
+  // Code.js の showFilePicker が渡す設定
+  const CONFIG = <?!= JSON.stringify(config) ?>;
+  const DIALOG = { width: 720, height: 500 };
+
+  document.documentElement.lang = CONFIG.lang;
+  document.getElementById('intro').textContent = CONFIG.intro;
+  const status = document.getElementById('status');
+  status.textContent = CONFIG.loading;
+
+  // 閉じたことをサーバーに記録してからダイアログを閉じる（サイドバーが待つのをやめられるように）
+  function done() {
+    google.script.run
+      .withSuccessHandler(() => google.script.host.close())
+      .withFailureHandler(() => google.script.host.close())
+      .pickerClosed(CONFIG.fileId);
+  }
+
+  function fail() {
+    status.className = 'error';
+    status.textContent = CONFIG.failed;
+  }
+
+  function onApiLoad() {
+    gapi.load('picker', { callback: createPicker, onerror: fail });
+  }
+
+  function createPicker() {
+    try {
+      // 開いているプレゼンテーションだけを表示する
+      const view = new google.picker.DocsView(google.picker.ViewId.PRESENTATIONS)
+        .setFileIds(CONFIG.fileId)
+        .setMode(google.picker.DocsViewMode.LIST);
+      new google.picker.PickerBuilder()
+        .addView(view)
+        .enableFeature(google.picker.Feature.NAV_HIDDEN)
+        .setOAuthToken(CONFIG.token)
+        .setDeveloperKey(CONFIG.apiKey)
+        .setAppId(CONFIG.appId)
+        .setOrigin(google.script.host.origin)
+        .setLocale(CONFIG.lang)
+        .setSize(DIALOG.width - 2, DIALOG.height - 2)
+        .setCallback(onPicked)
+        .build()
+        .setVisible(true);
+      status.textContent = '';
+    } catch (e) {
+      console.error(e);
+      fail();
+    }
+  }
+
+  function onPicked(data) {
+    const action = data[google.picker.Response.ACTION];
+    if (action === google.picker.Action.PICKED || action === google.picker.Action.CANCEL) done();
+  }
+</script>
+<script src="https://apis.google.com/js/api.js?onload=onApiLoad" onerror="fail()"></script>
+</body>
+</html>

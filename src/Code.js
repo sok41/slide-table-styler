@@ -66,6 +66,13 @@ const PRESETS = {
 // 列幅の下限（Slides API は 32pt 未満の列幅を受け付けない）
 const MIN_COLUMN_WIDTH_PT = 32;
 
+// ===== ファイルへのアクセス（drive.file） =====
+// Slides API は drive.file スコープで呼ぶため、ファイルごとに一度、Google Picker でアクセスを許可してもらう。
+// PICKER_APP_ID は Cloud プロジェクトの番号。API キーはスクリプト プロパティ PICKER_API_KEY に保存する（リポジトリに含めない）。
+const PICKER_APP_ID = '778154754687';
+// サイドバーに「許可が必要」と伝えるためのエラーメッセージ
+const NEED_FILE_ACCESS = 'NEED_FILE_ACCESS';
+
 // ===== 表示言語 =====
 // 日本語（ja で始まる言語）なら日本語、それ以外は英語で表示する。
 // サイドバーは Chrome の表示言語で判定して、opts.lang でサーバーに渡す。
@@ -85,6 +92,11 @@ const MESSAGES = {
     tooBusy: '処理に時間がかかりすぎたか、混み合っています。適用する範囲を狭めるか、しばらくしてからもう一度お試しください。',
     invalidTable: detail => `この表には書式を適用できませんでした。結合したセルなど、表の構造が原因の可能性があります。（詳細：${detail}）`,
     unexpected: detail => `予期しないエラーが発生しました。（詳細：${detail}）`,
+    pickerTitle: 'このプレゼンテーションへのアクセスを許可',
+    pickerIntro: 'Slide Table Styler が表の書式を変更するには、このプレゼンテーションへのアクセスの許可が必要です（プレゼンテーションごとに最初の1回だけ）。表示されたファイルを選んで「選択」を押してください。',
+    pickerLoading: 'ファイルの選択画面を読み込み中…',
+    pickerFailed: 'ファイルの選択画面を開けませんでした。スライドを再読み込みして、もう一度お試しください。',
+    pickerNotConfigured: 'アクセスを許可する画面の設定が完了していません。開発者にお問い合わせください。',
   },
   en: {
     openSidebar: 'Open sidebar',
@@ -100,6 +112,11 @@ const MESSAGES = {
     tooBusy: 'This took too long or the service is busy. Try a smaller scope, or try again in a moment.',
     invalidTable: detail => `Couldn't format this table. Its structure (such as merged cells) may be the cause. (Details: ${detail})`,
     unexpected: detail => `Something went wrong. (Details: ${detail})`,
+    pickerTitle: 'Allow access to this presentation',
+    pickerIntro: 'To format tables, Slide Table Styler needs your permission to access this presentation (once per presentation). Select the file shown, then click "Select".',
+    pickerLoading: 'Loading the file picker…',
+    pickerFailed: "Couldn't open the file picker. Reload the presentation and try again.",
+    pickerNotConfigured: "The access screen isn't set up yet. Please contact the developer.",
   },
 };
 
@@ -186,6 +203,7 @@ function applyPreset(presetKey, opts) {
     tables.forEach(table => requests.push(...tableRequests_(table, preset, opts)));
     Slides.Presentations.batchUpdate({ requests: requests }, SlidesApp.getActivePresentation().getId());
   } catch (e) {
+    if (isFileAccessError_(e)) throw new Error(NEED_FILE_ACCESS);
     throw toUserError_(e, msg);
   }
 
@@ -193,6 +211,58 @@ function applyPreset(presetKey, opts) {
     return msg.appliedOne(name, tables[0].getNumRows(), tables[0].getNumColumns());
   }
   return msg.appliedMany(name, tables.length);
+}
+
+// ===== ファイルへのアクセスの許可（Google Picker） =====
+/** アクセスを許可するためのダイアログを開く。サイドバーは checkFileAccess で結果を待つ */
+function showFilePicker(lang) {
+  const msg = messages_(lang);
+  const apiKey = PropertiesService.getScriptProperties().getProperty('PICKER_API_KEY');
+  if (!apiKey) throw userError_(msg.pickerNotConfigured);
+  const fileId = SlidesApp.getActivePresentation().getId();
+  CacheService.getUserCache().remove(pickerCacheKey_(fileId));
+
+  const template = HtmlService.createTemplateFromFile('Picker');
+  template.config = {
+    fileId: fileId,
+    token: ScriptApp.getOAuthToken(),
+    apiKey: apiKey,
+    appId: PICKER_APP_ID,
+    lang: normalizeLang_(lang),
+    intro: msg.pickerIntro,
+    loading: msg.pickerLoading,
+    failed: msg.pickerFailed,
+  };
+  const html = template.evaluate().setWidth(720).setHeight(500);
+  SlidesApp.getUi().showModalDialog(html, msg.pickerTitle);
+}
+
+/** ダイアログが閉じたことを記録する（Picker.html から呼ばれる） */
+function pickerClosed(fileId) {
+  CacheService.getUserCache().put(pickerCacheKey_(fileId), '1', 600);
+}
+
+/** { access: 開いているファイルに Slides API でアクセスできるか, closed: ダイアログが閉じたか } */
+function checkFileAccess() {
+  const fileId = SlidesApp.getActivePresentation().getId();
+  let access = true;
+  try {
+    Slides.Presentations.get(fileId, { fields: 'presentationId' });
+  } catch (e) {
+    if (!isFileAccessError_(e)) throw e;
+    access = false;
+  }
+  const closed = CacheService.getUserCache().get(pickerCacheKey_(fileId)) === '1';
+  return { access: access, closed: closed };
+}
+
+// drive.file で許可されていないファイルは「見つからない」（404）として返ってくる
+function isFileAccessError_(e) {
+  return /Requested entity was not found|NOT_FOUND|\b404\b/.test(String((e && e.message) || e));
+}
+
+function pickerCacheKey_(fileId) {
+  return 'pickerClosed:' + fileId;
 }
 
 // ===== 表1つ分のリクエストを作る =====
