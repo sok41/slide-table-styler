@@ -93,13 +93,16 @@ Googleスライドの表に、罫線・背景色・文字の書式をまとめ�
 
 Slides API（高度なサービス）と OAuth スコープは [src/appsscript.json](src/appsscript.json) で設定済みです。
 
+本アドオンは `drive.file` スコープを使うため、プレゼンテーションで初めて「適用」を押したときに、Google Picker でアクセスの許可を求めます。Picker を動かすには、Cloud プロジェクトで **Google Picker API** を有効にし、この API だけに制限した API キーを作って、スクリプト プロパティ `PICKER_API_KEY` に保存します（プロジェクトの設定 → スクリプト プロパティ）。[src/Code.js](src/Code.js) の `PICKER_APP_ID` には、Cloud プロジェクトの番号を書きます。
+
 ## ファイル構成
 
 ```
 src/
 ├── appsscript.json   マニフェスト（V8ランタイム、Slides API v1、OAuth スコープ）
 ├── Code.js           メニュー、プリセット定義、表への適用処理、表示言語
-└── Sidebar.html      サイドバーの画面
+├── Sidebar.html      サイドバーの画面
+└── Picker.html       プレゼンテーションへのアクセスの許可を求めるダイアログ（Google Picker）
 docs/                 公開サイト（GitHub Pages）：ホーム・プライバシーポリシー・利用規約
 assets/icon/          アイコン
 ```

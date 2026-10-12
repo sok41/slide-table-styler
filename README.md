@@ -93,13 +93,16 @@ The add-on is developed and tested as an editor add-on in a standalone Apps Scri
 
 The Slides API (advanced service) and the OAuth scopes are already configured in [src/appsscript.json](src/appsscript.json).
 
+The Add-on uses the `drive.file` scope, so the first time you click Apply in a presentation, it asks you to allow access with the Google Picker. For the Picker to work, enable the **Google Picker API** in the Cloud project, create an API key restricted to it, and save the key as the script property `PICKER_API_KEY` (Project Settings → Script Properties). Set `PICKER_APP_ID` in [src/Code.js](src/Code.js) to your Cloud project number.
+
 ## Project structure
 
 ```
 src/
 ├── appsscript.json   Manifest (V8 runtime, Slides API v1, OAuth scopes)
 ├── Code.js           Menu, preset definitions, table formatting, display language
-└── Sidebar.html      Sidebar UI
+├── Sidebar.html      Sidebar UI
+└── Picker.html       Dialog that asks for access to the presentation (Google Picker)
 docs/                 Website on GitHub Pages: home, privacy policy, terms of service
 assets/icon/          Icons
 ```

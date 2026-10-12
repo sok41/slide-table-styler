@@ -28,12 +28,13 @@
   <!-- ===== English ===== -->
   <div lang="en">
     <h1>Privacy Policy</h1>
-    <p class="meta">Effective date: September 30, 2026 (last updated: October 7, 2026)</p>
+    <p class="meta">Effective date: September 30, 2026 (last updated: October 12, 2026)</p>
     <p>This Privacy Policy explains how Slide Table Styler (the "Add-on"), a Google Slides add-on developed by sok41 (the "Developer"), accesses, uses, and handles your data.</p>
 
     <h2>Summary</h2>
     <ul>
       <li>The Add-on only works on the presentation you have open, and only changes it when you click <strong>Apply</strong>.</li>
+      <li>The Add-on can access a presentation only after you allow it. The first time you click Apply in a presentation, a Google file picker shows that presentation, and the Add-on gets access to it only if you select it. It cannot access your other files.</li>
       <li>The Add-on does not store your content and does not send it to the Developer or any third party.</li>
       <li>The Add-on does not use cookies, analytics, or advertising.</li>
     </ul>
@@ -55,12 +56,16 @@
         <thead><tr><th>Scope</th><th>Why the Add-on needs it</th></tr></thead>
         <tbody>
           <tr>
-            <td><code>https://www.googleapis.com/auth/presentations</code></td>
-            <td>To read the tables in the open presentation and change their formatting when you click Apply. Table borders can only be changed through the Google Slides API, which requires this scope. The Add-on only works on the presentation you have open.</td>
+            <td><code>https://www.googleapis.com/auth/presentations.currentonly</code></td>
+            <td>To read the tables and theme colors in the presentation you have open (only that presentation), so the Add-on knows which tables to format and can offer theme colors as choices.</td>
+          </tr>
+          <tr>
+            <td><code>https://www.googleapis.com/auth/drive.file</code></td>
+            <td>To change the formatting of the tables when you click Apply. Table borders can only be changed through the Google Slides API. With this scope, the Add-on can use the API only on the presentations you have selected in the Google file picker, and not on any other file in your Google Drive.</td>
           </tr>
           <tr>
             <td><code>https://www.googleapis.com/auth/script.container.ui</code></td>
-            <td>To show the Add-on's menu and sidebar inside Google Slides.</td>
+            <td>To show the Add-on's menu, sidebar and access dialog inside Google Slides.</td>
           </tr>
         </tbody>
       </table>
@@ -68,7 +73,7 @@
 
     <h2>Data sharing and transfer</h2>
     <ul>
-      <li>The Add-on does not transfer your data to the Developer, to any third party, or to any server outside Google. It has no servers of its own and makes no requests to external services.</li>
+      <li>The Add-on does not transfer your data to the Developer, to any third party, or to any server outside Google. It has no servers of its own and makes no requests to services other than Google's (the access dialog loads the Google Picker from Google).</li>
       <li>The Add-on does not sell your data, and does not use or share it for advertising, credit or lending decisions, or any purpose other than providing the features described above.</li>
     </ul>
 
@@ -78,13 +83,14 @@
       <li><strong>Processing only inside Google's infrastructure.</strong> The Add-on runs on Google Apps Script and changes your tables through the Google Slides API. Your presentation data is processed only within Google's systems and is never copied to servers operated by the Developer or by anyone else.</li>
       <li><strong>Encryption in transit.</strong> All communication between the sidebar in your browser, Google Apps Script and the Google Slides API uses HTTPS (TLS) encryption.</li>
       <li><strong>Your own authorization only.</strong> The Add-on runs under your Google account with the permissions you grant. It can only act on the presentation you have open, and only when you click Apply. You can revoke access at any time (see "Removing access" below).</li>
-      <li><strong>No stored copies.</strong> The Add-on does not write your content to any database, file, cache or browser storage, so there is no stored copy of your data that could be exposed.</li>
+      <li><strong>No stored copies.</strong> The Add-on does not write your content to any database, file, cache or browser storage, so there is no stored copy of your data that could be exposed. The only thing it keeps is a temporary flag with the presentation's ID in Apps Script's per-user cache, so the sidebar knows when the access dialog is closed; it is deleted automatically after 10 minutes.</li>
       <li><strong>Restricted access to error logs.</strong> Error logs (described below) are kept in the Developer's Google Cloud project, protected by Google Cloud's access controls, and can be viewed only by the Developer's Google account.</li>
     </ul>
 
     <h2>Data retention and deletion</h2>
     <ul>
-      <li><strong>Your content:</strong> not retained. The tables are read only while the Add-on is running, and nothing is kept after the request finishes.</li>
+      <li><strong>Your content:</strong> not retained. The tables are read only while the Add-on is running, and nothing is kept after the request finishes (apart from the temporary flag described above, which is deleted after 10 minutes).</li>
+      <li><strong>Access you have granted:</strong> access to a presentation you selected in the file picker stays until you remove the Add-on's access in your Google Account (see "Removing access").</li>
       <li><strong>Error logs:</strong> if an error occurs, a technical error message may be recorded in Google Cloud Logging so the Developer can fix problems. These messages describe the error (and may include internal identifiers of slide objects) but not the text of your tables. Google also records basic execution information, such as the time and whether it succeeded. These records are deleted automatically after 30 days (the default retention period of Google Cloud Logging).</li>
       <li><strong>Deletion requests:</strong> because the Add-on stores no personal data, there is normally nothing to delete. If you have questions about your data, contact us through the link below.</li>
     </ul>
@@ -111,12 +117,13 @@
   <!-- ===== 日本語 ===== -->
   <div lang="ja">
     <h1>プライバシーポリシー</h1>
-    <p class="meta">施行日：2026年9月30日（最終更新：2026年10月7日）</p>
+    <p class="meta">施行日：2026年9月30日（最終更新：2026年10月12日）</p>
     <p>このプライバシーポリシーは、sok41（以下「開発者」）が提供する Googleスライドのアドオン Slide Table Styler（以下「本アドオン」）が、データにどのようにアクセスし、どのように扱うかを説明するものです。</p>
 
     <h2>概要</h2>
     <ul>
       <li>本アドオンは、開いているプレゼンテーションだけを対象にし、<strong>「適用」</strong>を押したときにだけ変更します。</li>
+      <li>本アドオンがプレゼンテーションにアクセスできるのは、利用者が許可したあとだけです。プレゼンテーションで初めて「適用」を押すと、Google のファイル選択画面にそのプレゼンテーションが表示され、利用者が選んだ場合にだけアクセスできるようになります。ほかのファイルにはアクセスできません。</li>
       <li>本アドオンは、内容を保存せず、開発者や第三者に送信しません。</li>
       <li>本アドオンは、Cookie、アクセス解析、広告を使いません。</li>
     </ul>
@@ -138,12 +145,16 @@
         <thead><tr><th>スコープ</th><th>必要な理由</th></tr></thead>
         <tbody>
           <tr>
-            <td><code>https://www.googleapis.com/auth/presentations</code></td>
-            <td>「適用」を押したときに、開いているプレゼンテーションの表を読み取り、書式を変更するため。表の罫線は Google Slides API でしか変更できず、この API にはこのスコープが必要です。本アドオンは開いているプレゼンテーションだけを対象にします。</td>
+            <td><code>https://www.googleapis.com/auth/presentations.currentonly</code></td>
+            <td>開いているプレゼンテーション（そのファイルだけ）の表とテーマの色を読み取るため。どの表に書式を適用するかを判断し、テーマの色を選択肢として表示します。</td>
+          </tr>
+          <tr>
+            <td><code>https://www.googleapis.com/auth/drive.file</code></td>
+            <td>「適用」を押したときに、表の書式を変更するため。表の罫線は Google Slides API でしか変更できません。このスコープでは、Google のファイル選択画面で利用者が選んだプレゼンテーションに対してだけ API を使え、Google ドライブのほかのファイルにはアクセスできません。</td>
           </tr>
           <tr>
             <td><code>https://www.googleapis.com/auth/script.container.ui</code></td>
-            <td>Googleスライドの中に、本アドオンのメニューとサイドバーを表示するため。</td>
+            <td>Googleスライドの中に、本アドオンのメニュー、サイドバー、アクセスを許可するダイアログを表示するため。</td>
           </tr>
         </tbody>
       </table>
@@ -151,7 +162,7 @@
 
     <h2>データの共有と転送</h2>
     <ul>
-      <li>本アドオンは、データを開発者、第三者、Google 以外のサーバーに送信しません。独自のサーバーを持たず、外部のサービスにも接続しません。</li>
+      <li>本アドオンは、データを開発者、第三者、Google 以外のサーバーに送信しません。独自のサーバーを持たず、Google 以外のサービスには接続しません（アクセスを許可するダイアログは、Google Picker を Google から読み込みます）。</li>
       <li>本アドオンは、データを販売せず、広告・与信や貸付の判断など、上に書いた機能の提供以外の目的に使ったり共有したりしません。</li>
     </ul>
 
@@ -161,13 +172,14 @@
       <li><strong>処理は Google の基盤の中だけ</strong>：本アドオンは Google Apps Script 上で動作し、Google Slides API を通じて表を変更します。プレゼンテーションのデータは Google のシステムの中だけで処理され、開発者やほかの誰かが運用するサーバーにコピーされることはありません。</li>
       <li><strong>通信の暗号化</strong>：ブラウザのサイドバー、Google Apps Script、Google Slides API の間の通信は、すべて HTTPS（TLS）で暗号化されています。</li>
       <li><strong>利用者自身の承認の範囲だけで動作</strong>：本アドオンは、利用者の Google アカウントのもとで、利用者が許可した権限だけで動作します。対象は開いているプレゼンテーションだけで、「適用」を押したときにだけ動きます。アクセス権はいつでも取り消せます（下の「アクセス権の削除」を参照）。</li>
-      <li><strong>データの複製を持たない</strong>：本アドオンは、内容をデータベース・ファイル・キャッシュ・ブラウザのストレージに書き込みません。そのため、流出しうるデータの複製が存在しません。</li>
+      <li><strong>データの複製を持たない</strong>：本アドオンは、内容をデータベース・ファイル・キャッシュ・ブラウザのストレージに書き込みません。そのため、流出しうるデータの複製が存在しません。例外として、アクセスを許可するダイアログが閉じたことをサイドバーが知るために、プレゼンテーションの ID を含む一時的な目印を Apps Script の利用者ごとのキャッシュに保存します。これは10分後に自動で削除されます。</li>
       <li><strong>エラーログへのアクセスの制限</strong>：エラーログ（下記）は開発者の Google Cloud プロジェクトに保存され、Google Cloud のアクセス制御で保護されており、開発者の Google アカウントだけが閲覧できます。</li>
     </ul>
 
     <h2>データの保存と削除</h2>
     <ul>
-      <li><strong>利用者の内容</strong>：保存しません。表は本アドオンの実行中にだけ読み取り、処理が終わったあとには何も残しません。</li>
+      <li><strong>利用者の内容</strong>：保存しません。表は本アドオンの実行中にだけ読み取り、処理が終わったあとには何も残しません（上記の一時的な目印は10分後に削除されます）。</li>
+      <li><strong>許可したアクセス</strong>：ファイル選択画面で選んだプレゼンテーションへのアクセスは、Google アカウントで本アドオンのアクセス権を削除するまで有効です（「アクセス権の削除」を参照）。</li>
       <li><strong>エラーログ</strong>：エラーが起きた場合、開発者が不具合を直すために、技術的なエラーメッセージが Google Cloud Logging に記録されることがあります。これはエラーの内容を示すもので（スライド内のオブジェクトの内部 ID を含むことがあります）、表の文字は含みません。また Google は、実行日時や成功・失敗などの基本的な実行情報を記録します。これらの記録は30日後に自動で削除されます（Google Cloud Logging の既定の保持期間）。</li>
       <li><strong>削除の依頼</strong>：本アドオンは個人データを保存しないため、通常は削除するものはありません。データについてご質問があれば、下の問い合わせ先までご連絡ください。</li>
     </ul>
