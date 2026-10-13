@@ -40,7 +40,7 @@ Instead of formatting tables one by one, pick a preset and click **Apply** to ma
 3. In the sidebar, choose a preset and where to apply it, and adjust alignment and text settings if needed.
 4. Click **Apply**.
 
-The first time you run it, you'll be asked to authorize the add-on with your Google account. To undo, press Ctrl+Z (⌘+Z on Mac).
+The first time you run it, you'll be asked to authorize the add-on with your Google account. Changes can't be undone with Ctrl+Z (⌘+Z on Mac). To go back, restore an earlier version in **File → Version history → See version history**.
 
 ### Display language
 

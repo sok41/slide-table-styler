@@ -61,7 +61,7 @@ HOW TO USE
 2. Choose Extensions > Slide Table Styler > Open sidebar.
 3. Click inside a table (not needed when applying to a whole slide or presentation).
 4. Choose a design and options, then click Apply.
-Not happy with the result? Press Ctrl+Z (Cmd+Z on Mac) to undo.
+Not happy with the result? Restore an earlier version in File > Version history > See version history.
 
 PRIVACY
 Slide Table Styler only reads and changes the tables in the presentation you have open, and only when you click Apply. It does not store your content or send it anywhere. Details: https://slide-table-styler.zkuma.com/privacy.html
@@ -101,7 +101,7 @@ Slide Table Styler は、Googleスライドの表をワンクリックで見や�
 2. 「拡張機能 > Slide Table Styler > サイドバーを開く」を選びます。
 3. 表の中をクリックします（スライド全体・プレゼンテーション全体に適用する場合は不要です）。
 4. デザインと設定を選び、「適用」を押します。
-元に戻したいときは Ctrl+Z（Mac は ⌘+Z）を押してください。
+元に戻したいときは、「ファイル > 変更履歴 > 変更履歴を表示」で適用前の版を復元してください。
 
 プライバシー
 Slide Table Styler は、「適用」を押したときに、開いているプレゼンテーションの表だけを読み取って変更します。内容を保存したり、外部に送信したりすることはありません。詳しくは https://slide-table-styler.zkuma.com/privacy.html をご覧ください。
