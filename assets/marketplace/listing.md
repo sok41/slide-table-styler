@@ -2,6 +2,8 @@
 
 Google Workspace Marketplace SDK の「Store Listing」に入力する内容。
 
+⚠ Google の製品名（Google Slides など）には、短い説明・詳しい説明・Post Install Tip のすべてで **™** を付け、詳しい説明の最後に商標の注記を入れる（2026-10-14 の Marketplace 審査で、™ がないことを理由に差し戻された）。
+
 - App name: `Slide Table Styler`
 - Category: Office Applications（候補に Productivity がなかったため）
 - Pricing: Free
@@ -12,7 +14,7 @@ Google Workspace Marketplace SDK の「Store Listing」に入力する内容。
 - Post Install Tip（言語共通・英語）:
 
   ```
-  Open any Google Slides presentation, then choose Extensions > Slide Table Styler > Open sidebar. Click inside a table, pick a design and click Apply.
+  Open any Google Slides™ presentation, then choose Extensions > Slide Table Styler > Open sidebar. Click inside a table, pick a design and click Apply.
   ```
 - Website: https://slide-table-styler.zkuma.com/
 - Privacy policy: https://slide-table-styler.zkuma.com/privacy.html
@@ -37,7 +39,7 @@ Google Workspace Marketplace SDK の「Store Listing」に入力する内容。
 ### Short description
 
 ```
-Apply clean, consistent designs to your Google Slides tables in one click — borders, colors, alignment and text styles together.
+Apply clean, consistent designs to your Google Slides™ tables in one click — borders, colors, alignment and text styles together.
 ```
 
 ### Detailed description
@@ -57,7 +59,7 @@ FEATURES
 • Available in English and Japanese
 
 HOW TO USE
-1. Open a presentation in Google Slides.
+1. Open a presentation in Google Slides™.
 2. Choose Extensions > Slide Table Styler > Open sidebar.
 3. Click inside a table (not needed when applying to a whole slide or presentation).
 4. Choose a design and options, then click Apply.
@@ -68,6 +70,8 @@ Slide Table Styler only reads and changes the tables in the presentation you hav
 
 SUPPORT
 Questions, bug reports and feature requests: https://github.com/sok41/slide-table-styler/issues
+
+Google Slides™ is a trademark of Google LLC. Slide Table Styler is not affiliated with or endorsed by Google LLC.
 ```
 
 ---
@@ -77,13 +81,13 @@ Questions, bug reports and feature requests: https://github.com/sok41/slide-tabl
 ### 短い説明
 
 ```
-Googleスライドの表に、整ったデザインをワンクリックで適用。罫線・色・揃え・文字の書式をまとめて設定します。
+Google スライド™ の表に、整ったデザインをワンクリックで適用。罫線・色・揃え・文字の書式をまとめて設定します。
 ```
 
 ### 詳しい説明
 
 ```
-Slide Table Styler は、Googleスライドの表をワンクリックで見やすく整えるアドオンです。セルを1つずつ書式設定する手間はもう必要ありません。
+Slide Table Styler は、Google スライド™ の表をワンクリックで見やすく整えるアドオンです。セルを1つずつ書式設定する手間はもう必要ありません。
 
 サイドバーでデザインを選んで「適用」を押すだけで、罫線・背景色・文字色・揃えをまとめて設定できます。
 
@@ -97,7 +101,7 @@ Slide Table Styler は、Googleスライドの表をワンクリックで見や�
 ・日本語・英語に対応
 
 使い方
-1. Googleスライドでプレゼンテーションを開きます。
+1. Google スライド™ でプレゼンテーションを開きます。
 2. 「拡張機能 > Slide Table Styler > サイドバーを開く」を選びます。
 3. 表の中をクリックします（スライド全体・プレゼンテーション全体に適用する場合は不要です）。
 4. デザインと設定を選び、「適用」を押します。
@@ -108,4 +112,6 @@ Slide Table Styler は、「適用」を押したときに、開いているプ�
 
 サポート
 ご質問・不具合の報告・機能の要望は https://github.com/sok41/slide-table-styler/issues へお寄せください。
+
+Google スライド™ は Google LLC の商標です。Slide Table Styler は Google LLC と提携しておらず、Google LLC の承認を受けたものでもありません。
 ```
