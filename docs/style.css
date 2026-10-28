@@ -77,3 +77,6 @@ footer.site .wrap { display: flex; gap: 16px; flex-wrap: wrap; }
 /* 言語の切り替え：JavaScript が動かない環境では両方の言語を表示する */
 html.lang-en [lang="ja"]:not(html) { display: none; }
 html.lang-ja [lang="en"]:not(html) { display: none; }
+.cta { margin: 16px 0 8px; }
+.cta-button { display: inline-block; padding: 10px 20px; border-radius: 8px; background: var(--accent); color: var(--bg); font-weight: 700; text-decoration: none; }
+.cta-button:hover { opacity: 0.9; }

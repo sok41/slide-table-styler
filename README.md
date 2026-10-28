@@ -6,6 +6,7 @@ A Google Slides add-on (built with Google Apps Script) that applies clean, consi
 
 Instead of formatting tables one by one, pick a preset and click **Apply** to make every table in your deck look consistent.
 
+- **Install: [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/slide_table_styler/778154754687)**
 - Website: https://slide-table-styler.zkuma.com/
 - [Privacy Policy](https://slide-table-styler.zkuma.com/privacy.html) · [Terms of Service](https://slide-table-styler.zkuma.com/terms.html)
 - Support: [GitHub Issues](https://github.com/sok41/slide-table-styler/issues)
@@ -35,12 +36,13 @@ Instead of formatting tables one by one, pick a preset and click **Apply** to ma
 
 ## How to use
 
-1. Open a presentation and choose **Extensions → Slide Table Styler → Open sidebar**.
-2. Click inside a table, or select the table itself (not needed when applying to a whole slide or presentation).
-3. In the sidebar, choose a preset and where to apply it, and adjust alignment and text settings if needed.
-4. Click **Apply**.
+1. Install the add-on from the [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/slide_table_styler/778154754687) (or in Google Slides, choose **Extensions → Add-ons → Get add-ons** and search for "Slide Table Styler").
+2. Open a presentation and choose **Extensions → Slide Table Styler → Open sidebar**.
+3. Click inside a table, or select the table itself (not needed when applying to a whole slide or presentation).
+4. In the sidebar, choose a preset and where to apply it, and adjust alignment and text settings if needed.
+5. Click **Apply**.
 
-The first time you run it, you'll be asked to authorize the add-on with your Google account. Changes can't be undone with Ctrl+Z (⌘+Z on Mac). To go back, restore an earlier version in **File → Version history → See version history**.
+The first time you run it, you'll be asked to authorize the add-on with your Google account. The first time you click **Apply** in a presentation, a Google Picker dialog asks you to allow access to that presentation; select it and the design is applied automatically. Changes can't be undone with Ctrl+Z (⌘+Z on Mac). To go back, restore an earlier version in **File → Version history → See version history**.
 
 ### Display language
 

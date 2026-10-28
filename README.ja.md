@@ -6,6 +6,7 @@ Googleスライドの表に、罫線・背景色・文字の書式をまとめ�
 
 表を1つずつ手で整える代わりに、プリセットを選んで「適用」を押すだけで、資料内の表の見た目をそろえられます。
 
+- **インストール：[Google Workspace Marketplace](https://workspace.google.com/marketplace/app/slide_table_styler/778154754687)**
 - サイト：https://slide-table-styler.zkuma.com/
 - [プライバシーポリシー](https://slide-table-styler.zkuma.com/privacy.html)・[利用規約](https://slide-table-styler.zkuma.com/terms.html)
 - お問い合わせ：[GitHub Issues](https://github.com/sok41/slide-table-styler/issues)
@@ -35,12 +36,13 @@ Googleスライドの表に、罫線・背景色・文字の書式をまとめ�
 
 ## 使い方
 
-1. スライドを開き、メニューの **拡張機能 → Slide Table Styler → サイドバーを開く** を選びます。
-2. 表の中のセルをクリックするか、表そのものを選択します（範囲を「スライド」「すべて」にする場合は不要です）。
-3. サイドバーでプリセットと適用する範囲を選び、必要に応じて揃えや文字の設定を変えます。
-4. **適用** を押します。
+1. [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/slide_table_styler/778154754687) からアドオンをインストールします（Google スライドの **拡張機能 → アドオン → アドオンを取得** で「Slide Table Styler」を検索しても入手できます）。
+2. スライドを開き、メニューの **拡張機能 → Slide Table Styler → サイドバーを開く** を選びます。
+3. 表の中のセルをクリックするか、表そのものを選択します（範囲を「スライド」「すべて」にする場合は不要です）。
+4. サイドバーでプリセットと適用する範囲を選び、必要に応じて揃えや文字の設定を変えます。
+5. **適用** を押します。
 
-初回の実行時には、Googleアカウントでの承認を求められます。変更は Ctrl+Z（Mac は ⌘+Z）では元に戻せません。元に戻したいときは、**ファイル → 変更履歴 → 変更履歴を表示** で適用前の版を復元してください。
+初回の実行時には、Googleアカウントでの承認を求められます。プレゼンテーションで初めて **適用** を押したときは、そのプレゼンテーションへのアクセスを許可する Google Picker のダイアログが開きます。ファイルを選ぶと、そのまま自動で適用されます。変更は Ctrl+Z（Mac は ⌘+Z）では元に戻せません。元に戻したいときは、**ファイル → 変更履歴 → 変更履歴を表示** で適用前の版を復元してください。
 
 ### 表示言語
 
